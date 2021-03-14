@@ -1,0 +1,51 @@
+<div style="margin-top: 5vw;">
+  <p-table [value]="loans" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="caption">
+      Loan Requests
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="text-align: center;">Client Name</th>
+        <th style="text-align: center;">Nic</th>
+        <th style="text-align: center;">Age</th>
+        <th style="text-align: center;">Amount</th>
+        <th style="text-align: center;">Interest Rate %</th>
+        <th style="text-align: center;">Loan Term</th>
+        <th style="text-align: center;"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-loan>
+      <tr>
+        <td style="text-align: center;">
+          {{loan.name}}
+        </td>
+        <td style="text-align: center;">
+          {{loan.nic}}
+        </td>
+        <td style="text-align: center;">
+          {{loan.age}}
+        </td>
+        <td style="text-align: center;">
+          {{loan.amount | number : '1.2-2'}}
+        </td>
+        <td style="text-align: center;">
+          {{loan.interestRate}}
+        </td>
+        <td style="text-align: center;">
+          {{loan.loanTerm}}
+        </td>
+        <td style="text-align: center;">
+          <a (click)="showLoanRequestForm()"><span class="pi pi-pencil"></span></a>
+          &nbsp;
+          <a><span class="pi pi-trash"></span></a>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+</div>
+
+<p-dialog header="" [(visible)]="loanFormVisible" [modal]="true" [responsive]="true" [style]="{width: '900px', minWidth: '600px'}"
+[maximizable]="true">
+  <app-loan-request-details-view ></app-loan-request-details-view>
+</p-dialog>

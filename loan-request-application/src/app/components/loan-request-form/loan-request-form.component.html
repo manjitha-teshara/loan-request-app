@@ -1,0 +1,66 @@
+
+<h2>Loan Request Form</h2>
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+      <form action="/action_page.php"  [formGroup]="loanRequestForm" (ngSubmit)="submitLoanRequest()">
+
+        <div class="row">
+          <div class="col-50">
+            <h3>Customer Details</h3>
+            <label for="fname"><i class="fa fa-user"></i> Full Name
+              <div *ngIf="submitted && name?.errors" class="invalid-feedback">
+                <div *ngIf="name?.errors?.required">Full Name Required</div>
+              </div>
+            </label>
+            <input type="text" id="fname" name="firstname" placeholder="Full Name" formControlName="name">
+            <label for="age"><i class="fa fa-envelope"></i> Age
+              <div *ngIf="submitted && age?.errors" class="invalid-feedback">
+                <div *ngIf="age?.errors?.required">Age Required</div>
+              </div></label>
+            <input type="text" id="age" name="email" placeholder="Age"  formControlName="age">
+
+            <label for="nic"><i class="fa fa-institution"></i> NIC
+              <div *ngIf="submitted && nic?.errors" class="invalid-feedback">
+                <div *ngIf="nic?.errors?.pattern">Please Enter Valid NIC</div>
+                <div *ngIf="nic?.errors?.required">NIC Number Required</div>
+              </div></label>
+            <input type="text" id="nic" name="nic" placeholder="NIC"  formControlName="nic">
+          </div>
+
+          <div class="col-50">
+            <h3>Request Loan Details</h3>
+
+            <label for="amount">Amount
+              <div *ngIf="submitted && amount?.errors" class="invalid-feedback">
+                <div *ngIf="amount?.errors?.required">Amount Required</div>
+              </div></label>
+            <input type="text" id="amount" name="Requested Loan Amount" placeholder="0.00"
+                   formControlName="amount" (change)="monthlyPaymentCal()"
+            >
+
+            <label for="rate">Interest Rate (%)
+              <div *ngIf="submitted && interestRate?.errors" class="invalid-feedback">
+                <div *ngIf="interestRate?.errors?.required">Interest Rate Required</div>
+              </div></label>
+            <input type="text" id="rate" name="rate" placeholder="0%"  formControlName="interestRate" (change)="monthlyPaymentCal()">
+
+            <label for="term">Loan Term
+              <div *ngIf="submitted && loanTerm?.errors" class="invalid-feedback">
+                <div *ngIf="loanTerm?.errors?.required">Loan Term Required</div>
+              </div></label>
+            <input type="text" id="term" name="term" placeholder="Months"  formControlName="loanTerm" (change)="monthlyPaymentCal()">
+
+          </div>
+
+        </div>
+        <input type="submit" value="Continue to Request" class="btn">
+      </form>
+    </div>
+  </div>
+  <div class="col-25 " >
+    <div class="monthly-payment-view" *ngIf="monthlyPayment">
+      <div class="monthly-payment-view-div">Monthly Payment {{monthlyPayment}}</div>
+    </div>
+  </div>
+</div>

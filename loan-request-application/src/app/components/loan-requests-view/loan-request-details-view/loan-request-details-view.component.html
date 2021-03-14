@@ -1,0 +1,54 @@
+
+<h2>Loan Request Details View Form</h2>
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+      <form action="/action_page.php"  [formGroup]="loanRequestForm">
+
+        <div class="row">
+          <div class="col-50">
+            <h3>Customer Details</h3>
+            <label for="fname"><i class="fa fa-user"></i> Full Name
+            </label>
+            <input type="text" id="fname" name="firstname" placeholder="Full Name" formControlName="name">
+
+            <label for="age"><i class="fa fa-envelope"></i> Age</label>
+            <input type="text" id="age" name="email" placeholder="Age"  formControlName="age">
+
+            <label for="nic"><i class="fa fa-institution"></i> NIC</label>
+            <input type="text" id="nic" name="nic" placeholder="NIC"  formControlName="nic">
+          </div>
+
+          <div class="col-50">
+            <h3>Request Loan Details</h3>
+
+            <label for="amount">Amount</label>
+            <input type="text" id="amount" name="Requested Loan Amount" placeholder="0.00"
+                   formControlName="amount" (change)="monthlyPaymentCal()"
+            >
+
+            <label for="rate">Interest Rate (%)</label>
+            <input type="text" id="rate" name="rate" placeholder="0%"  formControlName="interestRate" (change)="monthlyPaymentCal()">
+
+            <label for="term">Loan Term</label>
+            <input type="text" id="term" name="term" placeholder="Months"  formControlName="loanTerm" (change)="monthlyPaymentCal()">
+
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-25">
+    <h3>Monthly Payment {{monthlyPayment}}</h3>
+    <div class="container">
+      <h4>Term <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>
+      <p><a href="#">Product 1</a> <span class="price">$15</span></p>
+      <p><a href="#">Product 2</a> <span class="price">$5</span></p>
+      <p><a href="#">Product 3</a> <span class="price">$8</span></p>
+      <p><a href="#">Product 4</a> <span class="price">$2</span></p>
+      <hr>
+      <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+    </div>
+  </div>
+</div>
